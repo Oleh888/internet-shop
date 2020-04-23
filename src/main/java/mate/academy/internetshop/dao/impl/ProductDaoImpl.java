@@ -35,7 +35,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean deletedById(Long id) {
-        return Storage.products.removeIf(item -> item.getId().equals(id));
+        return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 
     @Override
