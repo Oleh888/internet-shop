@@ -1,18 +1,18 @@
 package mate.academy.internetshop.dao;
 
 import java.util.List;
-import mate.academy.internetshop.model.Product;
+import java.util.Optional;
 import mate.academy.internetshop.model.ShoppingCart;
 
 public interface ShoppingCartDao {
 
-    ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
+    ShoppingCart create(ShoppingCart shoppingCart);
 
-    boolean deleteProduct(ShoppingCart shoppingCart, Product product);
+    Optional<ShoppingCart> get(Long id);
 
-    void clear(ShoppingCart shoppingCart); //remove all products from the shoppingCart
+    List<ShoppingCart> getAll();
 
-    ShoppingCart getByUserId(Long userId);
+    ShoppingCart update(ShoppingCart shoppingCart);
 
-    List<Product> getAllProducts(ShoppingCart shoppingCart);
+    boolean delete(Long id);
 }

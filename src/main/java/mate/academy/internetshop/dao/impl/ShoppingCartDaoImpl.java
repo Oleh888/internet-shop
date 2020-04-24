@@ -1,48 +1,44 @@
 package mate.academy.internetshop.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
 import mate.academy.internetshop.dao.ShoppingCartDao;
 import mate.academy.internetshop.db.Storage;
 import mate.academy.internetshop.lib.Dao;
-import mate.academy.internetshop.model.Product;
 import mate.academy.internetshop.model.ShoppingCart;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
-    public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
-        shoppingCart.getProducts().add(product);
+    public ShoppingCart create(ShoppingCart shoppingCart) {
         Storage.addShoppingCart(shoppingCart);
-        Storage.addUser(shoppingCart.getUser());
         return shoppingCart;
     }
 
     @Override
-    public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
-        return shoppingCart.getProducts().remove(product);
+    public Optional<ShoppingCart> get(Long id) {
+        return Storage.shoppingCarts.stream()
+                .filter(shoppingCart -> shoppingCart.getId().equals(id))
+                .findFirst();
     }
 
     @Override
-    public void clear(ShoppingCart shoppingCart) {
-        shoppingCart.getProducts().clear();
+    public boolean delete(Long id) {
+        return Storage.shoppingCarts.removeIf(shoppingCart -> shoppingCart.getId().equals(id));
     }
 
     @Override
-    public ShoppingCart getByUserId(Long userId) {
-        return Storage.shoppingCarts
-                .stream()
-                .filter(shoppingCart -> shoppingCart.getUser().getUserId().equals(userId))
-                .findFirst().get();
+    public List<ShoppingCart> getAll() {
+        return Storage.shoppingCarts;
     }
 
     @Override
-    public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return Storage.shoppingCarts
-                .stream()
-                .filter(shoppingCart1 -> shoppingCart1.equals(shoppingCart))
-                .findFirst()
-                .get()
-                .getProducts();
+    public ShoppingCart update(ShoppingCart shoppingCart) {
+        IntStream.range(0, Storage.shoppingCarts.size())
+                .filter(i -> Storage.shoppingCarts.get(i).getId().equals(shoppingCart.getId()))
+                .forEach(i -> Storage.shoppingCarts.set(i, shoppingCart));
+        return shoppingCart;
     }
 }

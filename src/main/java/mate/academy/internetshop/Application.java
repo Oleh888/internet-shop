@@ -14,56 +14,59 @@ public class Application {
     private static Injector injector = Injector.getInstance("mate.academy.internetshop");
 
     public static void main(String[] args) {
-        ProductService productService = (ProductService) injector.getInstance(ProductService.class);
-        Product product1 = new Product("BMV", 70_0000);
+        ProductService productService =
+                (ProductService) injector.getInstance(ProductService.class);
+        UserService userService =
+                (UserService) injector.getInstance(UserService.class);
+        ShoppingCartService shoppingCartService =
+                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        OrderService orderService =
+                (OrderService) injector.getInstance(OrderService.class);
+
+        Product product1 = new Product("BMV", 70_000);
+        Product product2 = new Product("Lanos", 10_000);
         productService.create(product1);
+        productService.create(product2);
 
-        UserService userService = (UserService) injector.getInstance(UserService.class);
-        User user1 = new User("Oleh");
-        initializedUsers(userService, user1);
+        System.out.println(productService.getProduct(product1.getId()));
+        System.out.println(productService.getAll());
 
-        ShoppingCartService shoppingCartService = (ShoppingCartService)
-                injector.getInstance(ShoppingCartService.class);
-        ShoppingCart shoppingCart1 = new ShoppingCart(user1);
-        initializedShoppingCart(shoppingCartService, shoppingCart1, product1);
-        shoppingCartService.addProduct(shoppingCart1, product1);
+        Product product3 = new Product("Audi", 80_000);
+        productService.create(product3);
+        productService.deletedById(product2.getId());
+        product1.setPrice(50_000);
+        System.out.println(productService.getAll() + "\n");
 
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-        initializedOrder(orderService, shoppingCart1);
-    }
+        User user1 = new User("Oleh", "oleh8", "8888");
+        User user2 = new User("Anton", "antonAnton", "parol");
+        userService.create(user1);
+        userService.create(user2);
+        System.out.println(userService.getAll());
+        user2.setLogin("anton!");
+        System.out.println(userService.getAll());
+        userService.delete(user2.getUserId());
+        System.out.println(userService.getAll() + "\n");
+        userService.create(user2);
 
-    public static void initializedUsers(UserService service, User user) {
-        System.out.println("Before creating " + user);
-        System.out.println("After creating " + service.create(user));
-        System.out.println("Get user by ID " + service.get(user.getUserId()));
-        System.out.println("After updating info " + service
-                .update(service.create(new User("Anton"))));
-        System.out.println("All users " + service.getAll());
-        System.out.println("Delete user " + service.delete(user.getUserId()));
-        System.out.println();
-    }
+        ShoppingCart user1Cart = shoppingCartService.getByUserId(user1.getUserId());
+        ShoppingCart user2Cart = shoppingCartService.getByUserId(user2.getUserId());
+        shoppingCartService.addProduct(user1Cart, product1);
+        shoppingCartService.addProduct(user1Cart, product2);
+        shoppingCartService.addProduct(user2Cart, product2);
+        shoppingCartService.addProduct(user2Cart, product3);
+        System.out.println(shoppingCartService.getAllProducts(user2Cart) + "\n");
 
-    public static void initializedShoppingCart(ShoppingCartService shCartServ,
-                                               ShoppingCart shCart, Product pr) {
-        System.out.println("Before adding product " + shCart);
-        System.out.println("After adding product " + shCartServ.addProduct(shCart, pr));
-        System.out.println("Get shCart by userId " + shCartServ
-                .getByUserId(shCart.getUser().getUserId()));
-        System.out.println("All products " + shCartServ.getAllProducts(shCart));
-        System.out.println("Delete shoppingCart " + shCartServ.deleteProduct(shCart, pr));
-        System.out.println();
-    }
-
-    public static void initializedOrder(OrderService orderService, ShoppingCart shCart) {
-        Order order = orderService.completeOrder(shCart.getProducts(), shCart.getUser());
-        System.out.println("Completed order + " + order);
-        System.out.println("Get order by ID " + orderService.get(order.getOrderId()));
-        System.out.println("All orders " + orderService.getAll());
-        Order order1 = new Order(order.getUser());
-        System.out.println("New order with the same user " + order1);
-        System.out.println("Completed new order " + orderService
-                .completeOrder(order.getProducts(), order1.getUser()));
-        System.out.println("All user's orders " + orderService.getUserOrders(order.getUser()));
-        System.out.println(orderService.delete(order.getOrderId()));
+        Order userOneOrder = orderService.completeOrder(shoppingCartService.getAllProducts(user1Cart), user1);
+        System.out.println(shoppingCartService.getByUserId(user1.getUserId()));
+        System.out.println(orderService.get(userOneOrder.getOrderId()));
+        System.out.println(orderService.getUserOrders(user1));
+        userService.create(user2);
+        productService.create(product3);
+        ShoppingCart userTwoCart = shoppingCartService.getByUserId(user2.getUserId());
+        shoppingCartService.addProduct(userTwoCart, product2);
+        Order userTwoOrder = orderService.completeOrder(shoppingCartService.getAllProducts(user1Cart), user2);
+        System.out.println(orderService.getAll());
+        orderService.delete(userTwoOrder.getOrderId());
+        System.out.println(orderService.getAll());
     }
 }

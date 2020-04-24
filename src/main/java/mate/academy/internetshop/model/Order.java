@@ -1,6 +1,5 @@
 package mate.academy.internetshop.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -8,9 +7,9 @@ public class Order {
     private List<Product> products;
     private Long id;
 
-    public Order(User user) {
+    public Order(User user, List<Product> products) {
         this.user = user;
-        products = new ArrayList<>();
+        this.products = products;
     }
 
     public Long getOrderId() {
