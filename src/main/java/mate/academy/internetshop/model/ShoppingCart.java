@@ -13,6 +13,14 @@ public class ShoppingCart {
         products = new ArrayList<>();
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public List<Product> getProducts() {
         return products;
     }
@@ -27,5 +35,10 @@ public class ShoppingCart {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" + "products=" + products + ", id=" + id + ", user=" + user + '}';
     }
 }
