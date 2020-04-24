@@ -43,8 +43,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCart getByUserId(Long userId) {
         return shoppingCartDao.getAll().stream()
                 .filter(shoppingCart -> shoppingCart.getUser().getUserId().equals(userId))
-                .findFirst()
-                .orElseGet(() -> shoppingCartDao.create(new ShoppingCart(userService.get(userId))));
+                .findFirst();
     }
 
     @Override
