@@ -18,7 +18,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Optional<Product> getProduct(Long id) {
+    public Optional<Product> get(Long id) {
         return Storage.products
                 .stream()
                 .filter(product -> product.getId().equals(id))
@@ -34,7 +34,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean deletedById(Long id) {
+    public boolean delete(Long id) {
         return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 

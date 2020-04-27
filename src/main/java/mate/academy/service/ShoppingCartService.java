@@ -8,11 +8,11 @@ public interface ShoppingCartService {
 
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 
-    boolean deleteProduct(ShoppingCart shoppingCart, Product product);
+    boolean delete(ShoppingCart shoppingCart, Product product);
 
     void clear(ShoppingCart shoppingCart);
 
-    ShoppingCart getByUserId(Long userId);
+    List<Product> getAll(ShoppingCart shoppingCart);
 
-    List<Product> getAllProducts(ShoppingCart shoppingCart);
+    ShoppingCart get(Long userId);
 }
