@@ -11,7 +11,7 @@ import mate.academy.model.User;
 import mate.academy.service.UserService;
 
 public class GetAllUsersController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
 
     @Override
