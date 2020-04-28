@@ -76,7 +76,7 @@
 
     <servlet>
         <servlet-name>showCart</servlet-name>
-        <servlet-class>mate.academy.controllers.GetAllShoppingCartProductsController</servlet-class>
+        <servlet-class>mate.academy.controllers.ShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -86,7 +86,7 @@
 
     <servlet>
         <servlet-name>addToCart</servlet-name>
-        <servlet-class>mate.academy.controllers.ShoppingCartController</servlet-class>
+        <servlet-class>mate.academy.controllers.AddProductToShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
