@@ -10,8 +10,8 @@ import mate.academy.model.User;
 import mate.academy.service.UserService;
 
 public class RegistrationController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

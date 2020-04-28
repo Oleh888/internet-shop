@@ -7,18 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.lib.Injector;
-import mate.academy.model.User;
-import mate.academy.service.UserService;
+import mate.academy.model.Product;
+import mate.academy.service.ProductService;
 
-public class GetAllUsersController extends HttpServlet {
+public class GetAllProductsController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+    private ProductService productService =
+            (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<User> userList = userService.getAll();
-        req.setAttribute("users", userList);
-        req.getRequestDispatcher("/WEB-INF/views/users/all.jsp").forward(req, resp);
+        List<Product> productList = productService.getAll();
+        req.setAttribute("products", productList);
+        req.getRequestDispatcher("/WEB-INF/views/products/all.jsp").forward(req, resp);
     }
 }

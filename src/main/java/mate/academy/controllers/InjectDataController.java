@@ -13,9 +13,9 @@ import mate.academy.service.UserService;
 
 public class InjectDataController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private ProductService productService =
-            (ProductService) injector.getInstance(ProductService.class);
+            (ProductService) INJECTOR.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
