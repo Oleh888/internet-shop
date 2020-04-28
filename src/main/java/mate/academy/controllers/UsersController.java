@@ -10,7 +10,7 @@ import mate.academy.lib.Injector;
 import mate.academy.model.User;
 import mate.academy.service.UserService;
 
-public class UsersController extends HttpServlet {
+public class GetAllUsersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("mate.academy");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
 
