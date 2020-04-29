@@ -25,7 +25,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public boolean delete(ShoppingCart shoppingCart, Product product) {
+    public boolean deleteProduct(ShoppingCart shoppingCart, Product product) {
         boolean result = shoppingCart.getProducts().remove(product);
         if (result) {
             shoppingCartDao.update(shoppingCart);
@@ -40,7 +40,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCart get(Long userId) {
+    public ShoppingCart getByUserId(Long userId) {
         return shoppingCartDao.getAll().stream()
                 .filter(shoppingCart -> shoppingCart.getUser().getUserId().equals(userId))
                 .findFirst().orElseGet(() -> shoppingCartDao

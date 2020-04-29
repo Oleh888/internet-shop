@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>mate.academy.controllers.GetAllProductsController</servlet-class>
+        <servlet-class>mate.academy.controllers.GetAllProductsToBuyController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -106,7 +106,7 @@
 
     <servlet>
         <servlet-name>completeOrder</servlet-name>
-        <servlet-class>mate.academy.controllers.OrderController</servlet-class>
+        <servlet-class>mate.academy.controllers.CompleteOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -116,7 +116,7 @@
 
     <servlet>
         <servlet-name>showOrders</servlet-name>
-        <servlet-class>mate.academy.controllers.GetAllOrdersController</servlet-class>
+        <servlet-class>mate.academy.controllers.GetAllUserOrdersController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -146,7 +146,7 @@
 
     <servlet>
         <servlet-name>allProductsForAdmin</servlet-name>
-        <servlet-class>mate.academy.controllers.GetAllShopProductsController</servlet-class>
+        <servlet-class>mate.academy.controllers.GetAllProductsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
