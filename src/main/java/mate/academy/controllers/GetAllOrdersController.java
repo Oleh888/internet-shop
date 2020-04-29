@@ -11,7 +11,7 @@ import mate.academy.model.Order;
 import mate.academy.service.OrderService;
 import mate.academy.service.UserService;
 
-public class GetAllOrdersController extends HttpServlet {
+public class GetAllUserOrdersController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private OrderService orderService =
