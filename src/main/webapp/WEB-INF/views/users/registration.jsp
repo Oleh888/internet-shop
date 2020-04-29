@@ -4,6 +4,7 @@
     <title>Registration</title>
 </head>
 <body>
+    <jsp:include page="../index.jsp"></jsp:include>
     <h1>Hello! Please provide your user details.</h1>
 
     <h4 style="color:red">${message}</h4>

@@ -4,6 +4,8 @@
     <title>Add product</title>
 </head>
 <body>
+<jsp:include page="../index.jsp"></jsp:include>
+
     <h1>Add some products</h1>
 
     <form method="post" action="${pageContext.request.contextPath}/products/add">

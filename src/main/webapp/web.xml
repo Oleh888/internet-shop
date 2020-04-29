@@ -94,4 +94,63 @@
         <url-pattern>/products/addToCart</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>deleteFromCart</servlet-name>
+        <servlet-class>mate.academy.controllers.DeleteProductFromShoppingCartController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteFromCart</servlet-name>
+        <url-pattern>/carts/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>completeOrder</servlet-name>
+        <servlet-class>mate.academy.controllers.OrderController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>completeOrder</servlet-name>
+        <url-pattern>/completeOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>showOrders</servlet-name>
+        <servlet-class>mate.academy.controllers.GetAllOrdersController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>showOrders</servlet-name>
+        <url-pattern>/MyOrders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>mate.academy.controllers.DeleteOrderController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/orders/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProductFromShop</servlet-name>
+        <servlet-class>mate.academy.controllers.DeleteProductFromShopController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteProductFromShop</servlet-name>
+        <url-pattern>/deleteProductFromShop</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProductsForAdmin</servlet-name>
+        <servlet-class>mate.academy.controllers.GetAllShopProductsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allProductsForAdmin</servlet-name>
+        <url-pattern>/AllProductsForAdmin</url-pattern>
+    </servlet-mapping>
 </web-app>

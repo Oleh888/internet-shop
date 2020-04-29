@@ -5,6 +5,8 @@
     <title>All products</title>
 </head>
 <body>
+<jsp:include page="../index.jsp"></jsp:include>
+
     <h1>All products page</h1>
 
     <table border="1">
@@ -30,5 +32,6 @@
             </tr>
         </c:forEach>
     </table>
+    <a href="${pageContext.request.contextPath}/shoppingCart">Go to the shopping cart</a>
 </body>
 </html>

@@ -17,6 +17,11 @@
             <td><a href="${pageContext.request.contextPath}/users/all">Show all users</a></td>
 
             <td><a href="${pageContext.request.contextPath}/shoppingCart">Show the shopping cart</a></td>
+
+            <td><a href="${pageContext.request.contextPath}/MyOrders">Show all my orders</a></td>
+
+            <td><a href="${pageContext.request.contextPath}/AllProductsForAdmin">All products(For admin)</a></td>
+
         </table>
     </body>
 </html>

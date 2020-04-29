@@ -2,23 +2,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>All products in shopping cart</title>
+    <title>Products</title>
 </head>
 <body>
 <jsp:include page="../index.jsp"></jsp:include>
 
-<h1>All products in shopping cart page</h1>
+<h2>All products in shop</h2>
+
 <table border="1">
     <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Price</th>
+        <th>ID</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
-            <td>
-                <c:out value="${product.id}"/>
-            </td>
             <td>
                 <c:out value="${product.name}"/>
             </td>
@@ -26,15 +24,14 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/carts/delete?id=${product.id}">Delete</a>
+                <c:out value="${product.id}"/>
+            </td>
+            <td>
+                <a href="${pageContext.request.contextPath}/deleteProductFromShop?id=${product.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-    <form method="get" action="${pageContext.request.contextPath}/completeOrder">
-        <button type="submit">Complete order</button>
-    </form>
-
-    <a href="${pageContext.request.contextPath}/products/all">Return to the list of all products</a>
+<a href="${pageContext.request.contextPath}/products/add">Add new product</a>
 </body>
 </html>

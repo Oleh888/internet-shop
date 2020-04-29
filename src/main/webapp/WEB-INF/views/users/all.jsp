@@ -5,6 +5,8 @@
     <title>All users</title>
 </head>
 <body>
+    <jsp:include page="../index.jsp"></jsp:include>
+
     <h1>All users page</h1>
 
     <table border="1">
