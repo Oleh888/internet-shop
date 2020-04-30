@@ -16,8 +16,8 @@
         <c:forEach var="order" items="${orders}">
         <tr>
             <td><c:out value="${order.orderId}"/></td>
-            <td><a href="${pageContext.request.contextPath}/MyProductsToBuy?id=${order.orderId}">Show products</a></td>
-            <td><a href="${pageContext.request.contextPath}/orders/delete?id=${order.orderId}">Delete</a></td>
+            <td><a class="memberNameLink" href="${pageContext.request.contextPath}/MyProductsToBuy?id=${order.orderId}">Show products</a></td>
+            <td><a class="memberNameLink" href="${pageContext.request.contextPath}/orders/delete?id=${order.orderId}">Delete</a></td>
         </tr>
         </c:forEach>
     </table>
