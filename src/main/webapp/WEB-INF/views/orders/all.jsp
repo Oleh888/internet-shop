@@ -1,32 +1,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Orders</title>
-</head>
-<body>
-<jsp:include page="../index.jsp"></jsp:include>
+    <body>
+    <jsp:include page="../index.jsp"></jsp:include>
 
-<h2>My oders</h2>
+    <center><h2>My oders</h2></center>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>List of products</th>
-    </tr>
-    <c:forEach var="order" items="${orders}">
+    <table class="table table-hover">
+        <thead><tr>
+            <th scope="col">ID</th>
+            <th scope="col">List of products</th>
+            <th>Delete cart</th>
+        </tr></thead>
+        <tbody>
+        <c:forEach var="order" items="${orders}">
         <tr>
-            <td>
-                <c:out value="${order.orderId}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/shoppingCart?id=${order.orderId}">Show products</a>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/orders/delete?id=${order.orderId}">Delete</a>
-            </td>
+            <td><c:out value="${order.orderId}"/></td>
+            <td><a href="${pageContext.request.contextPath}/MyProductsToBuy?id=${order.orderId}">Show products</a></td>
+            <td><a href="${pageContext.request.contextPath}/orders/delete?id=${order.orderId}">Delete</a></td>
         </tr>
-    </c:forEach>
-</table>
+        </c:forEach>
+    </table>
 </body>
 </html>
