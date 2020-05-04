@@ -76,12 +76,12 @@
 
     <servlet>
         <servlet-name>showCart</servlet-name>
-        <servlet-class>mate.academy.controllers.ShoppingCartController</servlet-class>
+        <servlet-class>mate.academy.controllers.GetShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>showCart</servlet-name>
-        <url-pattern>/shoppingCart</url-pattern>
+        <url-pattern>/shoppingCart/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -111,7 +111,7 @@
 
     <servlet-mapping>
         <servlet-name>completeOrder</servlet-name>
-        <url-pattern>/completeOrder</url-pattern>
+        <url-pattern>/orders/complete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -121,7 +121,7 @@
 
     <servlet-mapping>
         <servlet-name>showOrders</servlet-name>
-        <url-pattern>/MyOrders</url-pattern>
+        <url-pattern>/orders/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -141,7 +141,7 @@
 
     <servlet-mapping>
         <servlet-name>deleteProductFromShop</servlet-name>
-        <url-pattern>/deleteProductFromShop</url-pattern>
+        <url-pattern>/products/deleteFromShop</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -151,7 +151,7 @@
 
     <servlet-mapping>
         <servlet-name>allProductsForAdmin</servlet-name>
-        <url-pattern>/AllProductsForAdmin</url-pattern>
+        <url-pattern>/products/allForAdmin</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -173,5 +173,15 @@
         <filter-name>authenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <servlet>
+        <servlet-name>showUserProducts</servlet-name>
+        <servlet-class>mate.academy.controllers.GetAllOrderController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>showUserProducts</servlet-name>
+        <url-pattern>/orders/allProducts</url-pattern>
+    </servlet-mapping>
 
 </web-app>

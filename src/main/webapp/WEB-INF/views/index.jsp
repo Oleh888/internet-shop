@@ -31,17 +31,17 @@
                     <a class="nav-link active" href="${pageContext.request.contextPath}/users/all">Show all users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/shoppingCart">Show the shopping cart</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/shoppingCart/all">Show the shopping cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/MyOrders">Show all my orders</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/orders/all">Show all my orders</a>
                             </li>
                 <li class="nav-item">
                 <li class="nav-item">
                     <a class="nav-link active" href="${pageContext.request.contextPath}/login">Login page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="${pageContext.request.contextPath}/AllProductsForAdmin">All products(For admin)</a>
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/products/allForAdmin">All products(For admin)</a>
                 </li>
             </ul>
         </div>

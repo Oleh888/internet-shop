@@ -12,4 +12,4 @@
             <center><h1>Your mock data was added to DB</h1></center>
             <a class="memberNameLink" href="${pageContext.request.contextPath}/">Inject data test into the DB</a>
         </body>
-</html>
+</html
