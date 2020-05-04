@@ -24,7 +24,7 @@
         </c:forEach>
     </table>
 
-    <form method="get" action="${pageContext.request.contextPath}/completeOrder">
+    <form method="get" action="${pageContext.request.contextPath}/orders/complete">
         <button type="submit" class="btn btn-primary">Complete order</button>
     </form>
     <a class="memberNameLink" href="${pageContext.request.contextPath}/products/all">Return to the list of all products</a>

@@ -21,6 +21,6 @@
                     </tr>
                 </c:forEach>
         </table>
-        <a class="memberNameLink" href="${pageContext.request.contextPath}/shoppingCart">Go to the shopping cart</a>
+        <a class="memberNameLink" href="${pageContext.request.contextPath}/shoppingCart/all">Go to the shopping cart</a>
     </body>
 </html>

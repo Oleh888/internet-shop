@@ -19,7 +19,7 @@
                 <td><c:out value="${product.name}"/></td>
                 <td><c:out value="${product.price}"/></td>
                 <td><c:out value="${product.id}"/></td>
-                <td><a href="${pageContext.request.contextPath}/deleteProductFromShop?id=${product.id}">Delete</a></td>
+                <td><a href="${pageContext.request.contextPath}/products/deleteFromShop?id=${product.id}">Delete</a></td>
             </tr>
             </c:forEach>
         </table>
