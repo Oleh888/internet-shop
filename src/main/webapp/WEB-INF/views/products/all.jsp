@@ -17,10 +17,10 @@
                         <td><c:out value="${product.name}"/></td>
                         <td><c:out value="${product.price}"/></td>
                         <td><c:out value="${product.id}"/></td>
-                        <td><a href="${pageContext.request.contextPath}/products/addToCart?id=${product.id}">Add</a></td>
+                        <td><a class="memberNameLink" href="${pageContext.request.contextPath}/products/addToCart?id=${product.id}">Add</a></td>
                     </tr>
                 </c:forEach>
         </table>
-        <a href="${pageContext.request.contextPath}/shoppingCart">Go to the shopping cart</a>
+        <a class="memberNameLink" href="${pageContext.request.contextPath}/shoppingCart">Go to the shopping cart</a>
     </body>
 </html>

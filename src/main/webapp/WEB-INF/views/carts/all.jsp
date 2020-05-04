@@ -19,7 +19,7 @@
             <td><c:out value="${product.id}"/></td>
             <td><c:out value="${product.name}"/></td>
             <td><c:out value="${product.price}"/></td>
-            <td><a href="${pageContext.request.contextPath}/carts/delete?id=${product.id}">Delete</a></td>
+            <td><a class="memberNameLink" href="${pageContext.request.contextPath}/carts/delete?id=${product.id}">Delete</a></td>
         </tr>
         </c:forEach>
     </table>
@@ -27,6 +27,6 @@
     <form method="get" action="${pageContext.request.contextPath}/completeOrder">
         <button type="submit" class="btn btn-primary">Complete order</button>
     </form>
-    <a href="${pageContext.request.contextPath}/products/all">Return to the list of all products</a>
+    <a class="memberNameLink" href="${pageContext.request.contextPath}/products/all">Return to the list of all products</a>
     </body>
 </html>
