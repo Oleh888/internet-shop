@@ -1,13 +1,11 @@
 package mate.academy.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.lib.Injector;
-import mate.academy.model.Product;
 import mate.academy.model.ShoppingCart;
 import mate.academy.service.ShoppingCartService;
 
