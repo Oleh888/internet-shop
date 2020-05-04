@@ -11,7 +11,7 @@ import mate.academy.model.Product;
 import mate.academy.model.ShoppingCart;
 import mate.academy.service.ShoppingCartService;
 
-public class ShoppingCartController extends HttpServlet {
+public class GetShoppingCartController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) INJECTOR.getInstance(ShoppingCartService.class);
