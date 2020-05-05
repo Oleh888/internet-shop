@@ -43,6 +43,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="${pageContext.request.contextPath}/products/allForAdmin">All products(For admin)</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="${pageContext.request.contextPath}/logout">Logout</a>
+                </li>
             </ul>
         </div>
     </body>
