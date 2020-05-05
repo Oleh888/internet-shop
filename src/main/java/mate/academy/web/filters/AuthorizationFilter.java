@@ -33,7 +33,8 @@ public class AuthorizationFilter implements Filter {
         protectedUrls.put("/orders/all", Set.of(Role.RoleName.USER));
         protectedUrls.put("/shoppingCart/all", Set.of(Role.RoleName.USER));
         protectedUrls.put("/products/all", Set.of(Role.RoleName.USER));
-        protectedUrls.put("/carts/delete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/shoppingCart/delete", Set.of(Role.RoleName.USER));
+        protectedUrls.put("/products/addToCart", Set.of(Role.RoleName.USER));
     }
 
     @Override
@@ -54,10 +55,8 @@ public class AuthorizationFilter implements Filter {
         User user = userService.get(userId);
         if (isAuthorized(user, protectedUrls.get(requestUrl))) {
             chain.doFilter(req, resp);
-            return;
         } else {
             req.getRequestDispatcher("/WEB-INF/views/accessDenied.jsp").forward(req, resp);
-            return;
         }
     }
 
