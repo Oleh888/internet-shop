@@ -10,8 +10,10 @@ import mate.academy.exceptions.AuthenticationException;
 import mate.academy.lib.Injector;
 import mate.academy.model.User;
 import mate.academy.security.AuthenticationService;
+import org.apache.log4j.Logger;
 
 public class LoginController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class);
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private final AuthenticationService authService =
             (AuthenticationService) INJECTOR.getInstance(AuthenticationService.class);
@@ -32,6 +34,8 @@ public class LoginController extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getUserId());
         } catch (AuthenticationException e) {
+            LOGGER.info("User with the login " + login
+                    + " failed to provide matching login or password");
             req.setAttribute("errorMsg", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/users/login.jsp").forward(req, resp);
             return;
