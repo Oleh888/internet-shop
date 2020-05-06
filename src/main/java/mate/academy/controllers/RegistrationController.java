@@ -10,8 +10,10 @@ import mate.academy.lib.Injector;
 import mate.academy.model.Role;
 import mate.academy.model.User;
 import mate.academy.service.UserService;
+import org.apache.log4j.Logger;
 
 public class RegistrationController extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(RegistrationController.class);
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
@@ -34,6 +36,7 @@ public class RegistrationController extends HttpServlet {
             userService.create(user);
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
+            LOGGER.info("User with the name " + name + " failed to provide matching passwords");
             req.setAttribute("message", "Your password and repeat password aren't the same!");
             req.getRequestDispatcher("/WEB-INF/views/users/registration.jsp").forward(req, resp);
         }
