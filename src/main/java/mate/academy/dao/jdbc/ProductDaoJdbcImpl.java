@@ -51,7 +51,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
                 return Optional.of(product);
             }
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't SELECT product in DB with id: " + id, e);
+            throw new DataProcessingException("Can't SELECT product from DB with id: " + id, e);
         }
         return Optional.empty();
     }
