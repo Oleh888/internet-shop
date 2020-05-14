@@ -95,7 +95,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private void addToOrder(Order order) {
+    private void addProductsToOrder(Order order) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             for (Product product : order.getProducts()) {
                 String query = "INSERT INTO orders_products(order_id, product_id) values(?, ?)";
