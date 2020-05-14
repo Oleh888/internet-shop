@@ -77,7 +77,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart update(ShoppingCart shoppingCart) {
         deleteFromCart(shoppingCart);
-        addToCart(shoppingCart);
+        addProductsToCart(shoppingCart);
         return shoppingCart;
     }
 
@@ -94,12 +94,12 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private void addToCart(ShoppingCart shoppingCart) {
+    private void addProductsToCart(ShoppingCart shoppingCart) {
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "INSERT INTO shopping_carts_products(cart_id, product_id) "
+                    + "values(?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : shoppingCart.getProducts()) {
-                String query = "INSERT INTO shopping_carts_products(cart_id, product_id) "
-                        + "values(?, ?)";
-                PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, shoppingCart.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();

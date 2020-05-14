@@ -36,7 +36,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             while (resultSet.next()) {
                 order.setOrderId(resultSet.getLong("GENERATED_KEY"));
             }
-            addToOrder(order);
+            addProductsToOrder(order);
             return order;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create order in DB", e);
@@ -78,7 +78,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     @Override
     public Order update(Order order) {
         deleteFromOrder(order);
-        addToOrder(order);
+        addProductsToOrder(order);
         return order;
     }
 
@@ -97,9 +97,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     private void addProductsToOrder(Order order) {
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "INSERT INTO orders_products(order_id, product_id) values(?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : order.getProducts()) {
-                String query = "INSERT INTO orders_products(order_id, product_id) values(?, ?)";
-                PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, order.getOrderId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
