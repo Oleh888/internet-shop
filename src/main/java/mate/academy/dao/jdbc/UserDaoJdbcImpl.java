@@ -123,7 +123,7 @@ public class UserDaoJdbcImpl implements UserDao {
     private void addUsersRoles(User user) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String selectRoleIdQuery = "SELECT role_id FROM roles WHERE role_name = ?";
-            String query = "INSERT INTO internet_shop.users_roles (user_id, role_id) "
+            String query = "INSERT INTO users_roles (user_id, role_id) "
                     + "values(?, ?)";
             for (Role role : user.getRoles()) {
                 PreparedStatement selectStatement =
