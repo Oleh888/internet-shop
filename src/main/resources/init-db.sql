@@ -3,10 +3,10 @@ CREATE SCHEMA IF NOT EXISTS `internet_shop` DEFAULT CHARACTER SET utf8;
 CREATE TABLE `internet_shop`.`products`
 (
     `product_id` BIGINT         NOT NULL AUTO_INCREMENT,
-    `name`       VARCHAR(255)   NOT NULL,
+    `product_name`       VARCHAR(255)   NOT NULL,
     `price`      DECIMAL(11, 2) NOT NULL,
     PRIMARY KEY (`product_id`),
-    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE
+    UNIQUE INDEX `name_UNIQUE` (`product_name` ASC) VISIBLE
 );
 
 CREATE TABLE `internet_shop`.`users`
@@ -15,6 +15,7 @@ CREATE TABLE `internet_shop`.`users`
     `name`     VARCHAR(256) NOT NULL,
     `login`    VARCHAR(256) NOT NULL,
     `password` VARCHAR(256) NOT NULL,
+    `salt` VARBINARY(1024) NOT NULL,
     PRIMARY KEY (`user_id`),
     UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE
 );
