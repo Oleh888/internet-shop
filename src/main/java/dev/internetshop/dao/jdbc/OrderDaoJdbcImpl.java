@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
     private UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
@@ -84,9 +84,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean delete(Long id) {
+        deleteFromOrder(id);
         String query = "DELETE FROM orders WHERE order_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
-            deleteFromOrder(id);
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             statement.executeUpdate();

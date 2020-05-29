@@ -100,7 +100,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(3, user.getPassword());
             statement.setLong(4, user.getUserId());
             statement.executeUpdate();
-            deleteUsersRoles(user);
+            deleteUsersRoles(user.getUserId());
             addUsersRoles(user);
             return user;
         } catch (SQLException e) {
@@ -110,6 +110,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public boolean delete(Long id) {
+        deleteUsersRoles(id);
         String query = "DELETE FROM users WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -142,11 +143,11 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private void deleteUsersRoles(User user) {
+    private void deleteUsersRoles(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "DELETE FROM users_roles WHERE user_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, user.getUserId());
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete roles of user", e);

@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
 public class AuthorizationFilter implements Filter {
     private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private static final String USER_ID = "user_id";
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
     private Map<String, Set<Role.RoleName>> protectedUrls = new HashMap<>();
 

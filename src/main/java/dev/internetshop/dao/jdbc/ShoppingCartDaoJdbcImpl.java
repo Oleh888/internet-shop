@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Dao
 public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
     private UserService userService =
             (UserService) INJECTOR.getInstance(UserService.class);
 
@@ -76,13 +76,14 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public ShoppingCart update(ShoppingCart shoppingCart) {
-        deleteFromCart(shoppingCart);
+        deleteFromCart(shoppingCart.getId());
         addProductsToCart(shoppingCart);
         return shoppingCart;
     }
 
     @Override
     public boolean delete(Long id) {
+        deleteFromCart(id);
         String query = "DELETE FROM shopping_carts WHERE cart_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -109,11 +110,11 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private void deleteFromCart(ShoppingCart shoppingCart) {
+    private void deleteFromCart(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "DELETE FROM shopping_carts_products WHERE cart_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, shoppingCart.getId());
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DataProcessingException("Can't add products to shopping cart", e);

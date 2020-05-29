@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String USER_ID = "user_id";
-    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
