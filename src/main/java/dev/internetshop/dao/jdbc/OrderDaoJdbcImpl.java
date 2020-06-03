@@ -6,6 +6,7 @@ import dev.internetshop.lib.Dao;
 import dev.internetshop.lib.Injector;
 import dev.internetshop.model.Order;
 import dev.internetshop.model.Product;
+import dev.internetshop.model.User;
 import dev.internetshop.service.UserService;
 import dev.internetshop.util.ConnectionUtil;
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
@@ -151,5 +153,12 @@ public class OrderDaoJdbcImpl implements OrderDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete products from order", e);
         }
+    }
+
+    @Override
+    public List<Order> getUserOrders(User user) {
+        return getAll().stream()
+                .filter(order -> order.getUser().equals(user))
+                .collect(Collectors.toList());
     }
 }

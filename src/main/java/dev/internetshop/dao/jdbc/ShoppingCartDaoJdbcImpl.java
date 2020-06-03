@@ -150,4 +150,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
         return products;
     }
+
+    @Override
+    public ShoppingCart getByUserId(Long userId) {
+        return getAll().stream()
+                .filter(shoppingCart ->
+                        shoppingCart.getUser().getUserId().equals(userId))
+                .findFirst().orElseGet(() ->
+                        create(new ShoppingCart(userService.get(userId))));
+    }
 }
