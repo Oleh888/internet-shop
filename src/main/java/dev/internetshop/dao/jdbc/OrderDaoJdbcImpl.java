@@ -18,7 +18,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
@@ -157,8 +156,19 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getUserOrders(User user) {
-        return getAll().stream()
-                .filter(order -> order.getUser().equals(user))
-                .collect(Collectors.toList());
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM orders WHERE user_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, user.getUserId());
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                orders.add(getOrderFromResultSet(resultSet));
+            }
+            return orders;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't get list of orders with user_id: "
+                    + user.getUserId(), e);
+        }
     }
 }
