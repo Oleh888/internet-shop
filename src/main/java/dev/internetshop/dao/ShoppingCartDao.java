@@ -2,4 +2,6 @@ package dev.internetshop.dao;
 
 import dev.internetshop.model.ShoppingCart;
 
-public interface ShoppingCartDao extends GenericDao<ShoppingCart, Long> {}
+public interface ShoppingCartDao extends GenericDao<ShoppingCart, Long> {
+    ShoppingCart getByUserId(Long userId);
+}

@@ -2,12 +2,17 @@ package dev.internetshop.dao.impl;
 
 import dev.internetshop.dao.ShoppingCartDao;
 import dev.internetshop.db.Storage;
+import dev.internetshop.lib.Injector;
 import dev.internetshop.model.ShoppingCart;
+import dev.internetshop.service.UserService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
+    private static final Injector INJECTOR = Injector.getInstance("dev.internetshop");
+    private UserService userService =
+            (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
@@ -38,5 +43,12 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
                 .filter(i -> Storage.shoppingCarts.get(i).getId().equals(shoppingCart.getId()))
                 .forEach(i -> Storage.shoppingCarts.set(i, shoppingCart));
         return shoppingCart;
+    }
+
+    @Override
+    public ShoppingCart getByUserId(Long userId) {
+        return getAll().stream()
+                .filter(shoppingCart -> shoppingCart.getUser().getUserId().equals(userId))
+                .findFirst().orElseGet(() -> create(new ShoppingCart(userService.get(userId))));
     }
 }
